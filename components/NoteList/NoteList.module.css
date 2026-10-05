@@ -1,0 +1,37 @@
+.noteGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.noteCard {
+  display: flex;
+  min-height: 224px;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #e2e7df;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+.noteCard:hover { transform: translateY(-2px); border-color: #b6c99d; }
+.cardTop { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #98a199; font-size: 11px; }
+.tag { padding: 5px 8px; border-radius: 4px; background: #edf4e3; color: #577139; font-size: 10px; font-weight: 700; }
+.noteTitle { margin: 18px 0 8px; font-family: Georgia, serif; font-size: 20px; font-weight: 500; line-height: 1.25; }
+.noteLink { text-decoration: none; }
+.noteLink:hover { color: #587834; }
+.noteContent {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0 0 18px;
+  color: #77817a;
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.openLink { display: flex; align-items: center; justify-content: space-between; margin-top: auto; color: #48682e; font-size: 12px; font-weight: 700; text-decoration: none; }
+@media (max-width: 980px) { .noteGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .noteGrid { grid-template-columns: 1fr; } }

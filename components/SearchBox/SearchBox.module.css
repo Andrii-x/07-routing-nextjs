@@ -1,0 +1,26 @@
+.searchLabel {
+  display: flex;
+  width: min(260px, 40%);
+  height: 42px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border: 1px solid #dce3da;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.searchIcon { color: #7c8b7e; font-size: 22px; line-height: 1; }
+.search {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #25362c;
+  font-size: 13px;
+}
+
+@media (max-width: 560px) {
+  .searchLabel { width: 100%; }
+}

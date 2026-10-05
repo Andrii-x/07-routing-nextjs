@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px clamp(20px, 5vw, 76px);
+  border-top: 1px solid #e3e8df;
+  background: #fff;
+  color: #839087;
+  font-size: 12px;
+}
+
+.brand {
+  color: #314437;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.year { white-space: nowrap; }
+
+@media (max-width: 520px) {
+  .footer { flex-wrap: wrap; justify-content: flex-start; }
+  .year { margin-left: auto; }
+}

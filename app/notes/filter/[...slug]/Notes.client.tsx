@@ -1,8 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { useState } from "react";
+import NoteForm from "@/components/NoteForm/NoteForm";
+import NoteList from "@/components/NoteList/NoteList";
+import Pagination from "@/components/Pagination/Pagination";
+import SearchBox from "@/components/SearchBox/SearchBox";
 import { fetchNotes } from "@/lib/api/notes";
 import { noteKeys } from "@/lib/query-keys";
 import type { NoteTag } from "@/types/note";
@@ -11,6 +14,7 @@ import css from "./Notes.module.css";
 export default function NotesClient({ tag }: { tag: NoteTag | "all" }) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [showForm, setShowForm] = useState(false);
   const params = { page, search, tag };
   const { data, isPending, isError, error } = useQuery({
     queryKey: noteKeys.list(params),
@@ -28,21 +32,26 @@ export default function NotesClient({ tag }: { tag: NoteTag | "all" }) {
           <h1 className={css.title}>{title}</h1>
           <p className={css.subtitle}>A little space for everything on your mind.</p>
         </div>
-        <label className={css.searchLabel}>
-          <span className={css.searchIcon} aria-hidden="true">⌕</span>
-          <input
-            className={css.search}
-            type="search"
-            placeholder="Search notes"
-            value={search}
-            onChange={(event) => {
-              setSearch(event.target.value);
-              setPage(1);
-            }}
-            aria-label="Search notes"
-          />
-        </label>
+        <SearchBox
+          value={search}
+          onChange={(value) => {
+            setSearch(value);
+            setPage(1);
+          }}
+        />
       </div>
+
+      <div className={css.createRow}>
+        <button
+          className={css.createButton}
+          type="button"
+          aria-expanded={showForm}
+          onClick={() => setShowForm((visible) => !visible)}
+        >
+          {showForm ? "Cancel" : "+ Add a note"}
+        </button>
+      </div>
+      {showForm && <div className={css.formWrapper}><NoteForm /></div>}
 
       {isPending ? (
         <p className={css.message}>Loading notes…</p>
@@ -62,43 +71,8 @@ export default function NotesClient({ tag }: { tag: NoteTag | "all" }) {
             <span>{data.notes.length} notes on this page</span>
             <span className={css.resultsTag}>{tag === "all" ? "EVERYTHING" : tag.toUpperCase()}</span>
           </div>
-          <ul className={css.noteGrid}>
-            {data.notes.map((note) => (
-              <li key={note.id} className={css.noteItem}>
-                <article className={css.noteCard}>
-                  <div className={css.cardTop}>
-                    <span className={css.tag}>{note.tag}</span>
-                    <time dateTime={note.createdAt}>
-                      {new Date(note.createdAt).toLocaleDateString("en", {
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </time>
-                  </div>
-                  <h2 className={css.noteTitle}>
-                    <Link href={`/notes/${note.id}`} className={css.noteLink}>
-                      {note.title}
-                    </Link>
-                  </h2>
-                  <p className={css.noteContent}>{note.content}</p>
-                  <Link href={`/notes/${note.id}`} className={css.openLink}>
-                    Open note <span aria-hidden="true">↗</span>
-                  </Link>
-                </article>
-              </li>
-            ))}
-          </ul>
-          {data.totalPages > 1 && (
-            <div className={css.pagination}>
-              <button disabled={page <= 1} onClick={() => setPage(page - 1)}>
-                Previous
-              </button>
-              <span>{page} / {data.totalPages}</span>
-              <button disabled={page >= data.totalPages} onClick={() => setPage(page + 1)}>
-                Next
-              </button>
-            </div>
-          )}
+          <NoteList notes={data.notes} />
+          <Pagination page={page} totalPages={data.totalPages} onPageChange={setPage} />
         </>
       )}
     </main>

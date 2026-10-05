@@ -1,0 +1,20 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  color: #6b786f;
+  font-size: 13px;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  border: 1px solid #dce3da;
+  border-radius: 5px;
+  background: #fff;
+  color: #34443a;
+  cursor: pointer;
+}
+
+.pagination button:disabled { cursor: default; opacity: 0.45; }

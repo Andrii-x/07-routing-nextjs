@@ -1,0 +1,11 @@
+.form { display: grid; gap: 13px; padding: 18px; border: 1px solid #e2e7df; border-radius: 8px; background: #fff; }
+.field { display: grid; gap: 6px; color: #536159; font-size: 12px; font-weight: 650; }
+.field input,
+.field textarea,
+.tagField select { width: 100%; padding: 10px 11px; border: 1px solid #dce3da; border-radius: 5px; background: #fbfcfa; color: #25362c; font-size: 13px; }
+.field textarea { resize: vertical; line-height: 1.5; }
+.formBottom { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.tagField { display: grid; min-width: 140px; gap: 6px; color: #536159; font-size: 12px; font-weight: 650; }
+.submit { min-height: 39px; padding: 0 15px; border: 0; border-radius: 5px; background: #b9e36d; color: #26371e; cursor: pointer; font-size: 13px; font-weight: 700; }
+.submit:disabled { cursor: wait; opacity: .7; }
+.error { margin: 0; color: #a13e32; font-size: 12px; }
