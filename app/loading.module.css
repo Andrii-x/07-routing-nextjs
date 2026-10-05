@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  min-height: 55vh;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  color: #718078;
+  font-size: 13px;
+}
+
+.container p { margin: 0; }
+
+.spinner {
+  width: 30px;
+  aspect-ratio: 1;
+  border: 3px solid #dfe8d7;
+  border-top-color: #6c913d;
+  border-radius: 50%;
+  animation: spin 750ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation-duration: 2s; }
+}

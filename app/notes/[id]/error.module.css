@@ -1,0 +1,30 @@
+.container {
+  display: grid;
+  min-height: 55vh;
+  align-content: center;
+  justify-items: center;
+  padding: 32px 20px;
+  color: #748078;
+  text-align: center;
+}
+
+.container h1 {
+  margin: 0 0 8px;
+  color: #223229;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.container p { margin: 0; font-size: 14px; }
+
+.container button {
+  margin-top: 18px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 5px;
+  background: #b9e36d;
+  color: #26371e;
+  cursor: pointer;
+  font-weight: 700;
+}
