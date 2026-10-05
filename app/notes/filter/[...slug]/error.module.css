@@ -1,0 +1,4 @@
+.container { padding: 60px 20px; color: #65736a; text-align: center; }
+.container h1 { color: #223229; font-family: Georgia, serif; font-size: 28px; font-weight: 400; }
+.container p { font-size: 14px; }
+.container button { margin-top: 10px; padding: 10px 15px; border: 0; border-radius: 5px; background: #b9e36d; color: #26371e; cursor: pointer; font-weight: 700; }

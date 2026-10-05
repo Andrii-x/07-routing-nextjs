@@ -1,0 +1,47 @@
+.backdrop {
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  display: grid;
+  overflow-y: auto;
+  place-items: center;
+  padding: 24px;
+  background: rgb(20 31 27 / 52%);
+  animation: appear 150ms ease-out;
+}
+
+.dialog {
+  position: relative;
+  width: min(100%, 620px);
+  min-height: 250px;
+  padding: 42px;
+  border: 1px solid #e1e6df;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 20%);
+}
+
+.close {
+  position: absolute;
+  top: 13px;
+  right: 15px;
+  width: 36px;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: #f1f4ef;
+  color: #25372e;
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 1;
+}
+
+@keyframes appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .backdrop { padding: 12px; }
+  .dialog { padding: 38px 24px 28px; }
+}

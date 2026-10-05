@@ -1,0 +1,28 @@
+.container {
+  display: grid;
+  min-height: 60vh;
+  align-content: center;
+  justify-items: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.code {
+  color: #648a33;
+  font-family: Georgia, serif;
+  font-size: 76px;
+  line-height: 1;
+}
+
+.title {
+  margin: 18px 0 8px;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 5vw, 36px);
+  font-weight: 500;
+}
+
+.description {
+  margin: 0;
+  color: #66736c;
+  line-height: 1.6;
+}
