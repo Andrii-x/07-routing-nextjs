@@ -1,24 +1,32 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
-import { fetchNotes } from "@/lib/api/notes";
+import { fetchNotes } from "@/lib/api";
 import { noteKeys } from "@/lib/query-keys";
 import type { NoteTag } from "@/types/note";
 import css from "./Notes.module.css";
 
 export default function NotesClient({ tag }: { tag: NoteTag | "all" }) {
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [page, setPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
-  const params = { page, search, tag };
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setDebouncedSearch(search), 300);
+    return () => window.clearTimeout(timeoutId);
+  }, [search]);
+
+  const params = { page, search: debouncedSearch, tag };
   const { data, isPending, isError, error } = useQuery({
     queryKey: noteKeys.list(params),
     queryFn: () => fetchNotes(params),
+    refetchOnMount: false,
     placeholderData: (previousData) => previousData,
   });
 
@@ -51,7 +59,12 @@ export default function NotesClient({ tag }: { tag: NoteTag | "all" }) {
           {showForm ? "Cancel" : "+ Add a note"}
         </button>
       </div>
-      {showForm && <div className={css.formWrapper}><NoteForm /></div>}
+      {showForm && (
+        <Modal onClose={() => setShowForm(false)} label="Create a note">
+          <h2 className={css.formTitle}>Create a note</h2>
+          <NoteForm onClose={() => setShowForm(false)} />
+        </Modal>
+      )}
 
       {isPending ? (
         <p className={css.message}>Loading notes…</p>

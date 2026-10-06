@@ -42,7 +42,7 @@
 .emptyMark { display: inline-grid; width: 42px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: #dff0c2; color: #4c6c2e; font-family: Georgia, serif; font-size: 19px; }
 .createRow { display: flex; justify-content: flex-end; margin: -15px 0 22px; }
 .createButton { padding: 9px 13px; border: 0; border-radius: 5px; background: #b9e36d; color: #26371e; cursor: pointer; font-size: 12px; font-weight: 700; }
-.formWrapper { margin-bottom: 24px; }
+.formTitle { margin: 4px 0 18px; color: #23352a; font-family: Georgia, serif; font-size: 25px; font-weight: 400; }
 
 @media (max-width: 980px) {
 }

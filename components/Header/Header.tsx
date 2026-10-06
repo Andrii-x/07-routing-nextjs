@@ -4,7 +4,7 @@ import css from "./Header.module.css";
 export default function Header() {
   return (
     <header className={css.header}>
-      <Link className={css.brand} href="/notes/filter/all" aria-label="NoteHub home">
+      <Link className={css.brand} href="/" aria-label="NoteHub home">
         <span className={css.brandMark}>N</span>
         <span>notehub</span>
       </Link>

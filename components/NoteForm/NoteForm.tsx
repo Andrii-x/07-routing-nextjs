@@ -2,14 +2,14 @@
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState, type FormEvent } from "react";
-import { createNote } from "@/lib/api/notes";
+import { createNote } from "@/lib/api";
 import { noteKeys } from "@/lib/query-keys";
 import type { NoteTag } from "@/types/note";
 import css from "./NoteForm.module.css";
 
 const tags: NoteTag[] = ["Todo", "Work", "Personal", "Meeting", "Shopping"];
 
-export default function NoteForm() {
+export default function NoteForm({ onClose }: { onClose: () => void }) {
   const queryClient = useQueryClient();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -20,6 +20,7 @@ export default function NoteForm() {
       setTitle("");
       setContent("");
       await queryClient.invalidateQueries({ queryKey: noteKeys.all });
+      onClose();
     },
   });
 

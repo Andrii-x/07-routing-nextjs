@@ -10,6 +10,7 @@ export default function NoteDetails({ id }: { id: string }) {
   const { data, isPending, isError } = useQuery({
     queryKey: noteKeys.detail(id),
     queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
   });
 
   if (isPending) return <p className={css.message}>Loading note…</p>;
