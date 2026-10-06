@@ -1,1 +1,1 @@
-export { createNote, fetchNoteById, fetchNotes } from "@/lib/api";
+export { createNote, deleteNote, fetchNoteById, fetchNotes } from "@/lib/api";

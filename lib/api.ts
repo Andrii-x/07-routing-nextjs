@@ -30,3 +30,8 @@ export async function createNote(note: Pick<Note, "title" | "content" | "tag">) 
 	const { data } = await api.post<Note>("/notes", note);
 	return data;
 }
+
+export async function deleteNote(id: string) {
+	const { data } = await api.delete<Note>(`/notes/${id}`);
+	return data;
+}
